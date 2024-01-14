@@ -169,7 +169,7 @@ plot_ranking_4 = []
 while gen <= 100:
     list2 = ES(list2)
     gen = gen + 1
-    print(f"Generation_{gen}: {list2}")
+    # print(f"Generation_{gen}: {list2}")
 
     #グラフの描画
     plot = plot_graph_1(list2)
@@ -177,9 +177,9 @@ while gen <= 100:
     plot_ranking_2.append(plot[1])
     plot_ranking_3.append(plot[2])
     plot_ranking_4.append(plot[3])
-    print(f"lists_{gen}:\n 1st\n {plot_ranking_1}\n 2nd\n {plot_ranking_2}\n 3rd\n {plot_ranking_3}\n 4th\n {plot_ranking_4}")
+    # print(f"lists_{gen}:\n 1st\n {plot_ranking_1}\n 2nd\n {plot_ranking_2}\n 3rd\n {plot_ranking_3}\n 4th\n {plot_ranking_4}")
 
-    print("End!")
+    # print("End!")
 
 
 #x range
@@ -244,7 +244,7 @@ fig.update_layout(
 
 #Rendering
 app.layout = html.Div(children=[
-    html.H1(children='Hello World'),
+    html.H1(children='genetic algorithm sample'),
 
     dcc.Graph(
         id='example-graph',
@@ -253,4 +253,4 @@ app.layout = html.Div(children=[
 ])
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(host='0.0.0.0', port=8000, debug=False)
