@@ -5,12 +5,11 @@ import dash_html_components as html
 import random
 import plotly.graph_objects as go
 
+
 #Import css
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
-
-
 
 
 def ES(list2):
@@ -114,10 +113,8 @@ def ES(list2):
     result = [ranking_1_pokemon, ranking_2_pokemon, ranking_3_pokemon, ranking_4_pokemon, ranking_1_pokemon_changed, ranking_2_pokemon_changed, ranking_3_pokemon_changed, ranking_4_pokemon_changed, ranking_11_pokemon_changed, ranking_12_pokemon_changed]
     return result
 
-
 #初期集団の生成
 list2 = [[random.randint(1, 10) for _ in range(10)] for _ in range(10)]
-
 
 #Rank_1
 def plot_graph_1(list2):
@@ -173,7 +170,6 @@ while gen <= 100:
     plot_ranking_2.append(plot[1])
     plot_ranking_3.append(plot[2])
     plot_ranking_4.append(plot[3])
-
 
 gen_number = list(range(1,101,1))
 fig = go.Figure()
