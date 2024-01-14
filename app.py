@@ -2,10 +2,7 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-# import plotly.express as px
-import numpy as np
 import random
-# グラフ可視化
 import plotly.graph_objects as go
 
 #Import css
@@ -17,7 +14,7 @@ server = app.server
 
 
 def ES(list2):
-    #評価関数の前処理 (各ポケモンのsumを表示)
+    #評価関数の前処理
     sum_0=0
     for i in range(0, 10):
         sum_0 = sum_0 + list2[0][i]
@@ -70,7 +67,7 @@ def ES(list2):
 
     selected_result = [ranking_1, ranking_2, ranking_3, ranking_4]
 
-    #生き残ったポケモン
+    #生き残った個体たち
     ranking_1_pokemon = list2[selected_result[0][1]][0:10]
     ranking_2_pokemon = list2[selected_result[1][1]][0:10]
     ranking_3_pokemon = list2[selected_result[2][1]][0:10]
@@ -169,7 +166,6 @@ plot_ranking_4 = []
 while gen <= 100:
     list2 = ES(list2)
     gen = gen + 1
-    # print(f"Generation_{gen}: {list2}")
 
     #グラフの描画
     plot = plot_graph_1(list2)
@@ -177,56 +173,52 @@ while gen <= 100:
     plot_ranking_2.append(plot[1])
     plot_ranking_3.append(plot[2])
     plot_ranking_4.append(plot[3])
-    # print(f"lists_{gen}:\n 1st\n {plot_ranking_1}\n 2nd\n {plot_ranking_2}\n 3rd\n {plot_ranking_3}\n 4th\n {plot_ranking_4}")
-
-    # print("End!")
 
 
-#x range
 gen_number = list(range(1,101,1))
-
 fig = go.Figure()
-
 gen_number = list(range(1,101,1))
 
 fig.add_trace(
-    go.Scatter(x = gen_number, #X_label
-               y = plot_ranking_1, #y_label
-              text = "1st", #
-              mode = 'lines', #折れ線グラフ
-              name = '1st', #line_name
-              line=dict(color='rgb(239, 85, 59)', width=4, dash='solid') #line_type_detail      
+    go.Scatter(
+        x = gen_number,
+        y = plot_ranking_1,
+        text = "1st",
+        mode = 'lines',
+        name = '1st',
+        line=dict(color='rgb(239, 85, 59)', width=4, dash='solid')
     )
 )
 fig.add_trace(
-    go.Scatter(x = gen_number,
-               y = plot_ranking_2,
-              text = "2nd",
-              mode = 'lines',
-              name = '2nd',
-              line=dict(color='rgb(25, 211, 243)', width=4, dash='solid')  
-              
-    )
-)
-
-fig.add_trace(
-    go.Scatter(x = gen_number,
-               y = plot_ranking_3,
-              text = "3rd",
-              mode = 'lines',
-              line=dict(color='rgb(188, 189, 34)', width=4, dash='solid'),
-              name = '3rd'
-              
+    go.Scatter(
+        x = gen_number,
+        y = plot_ranking_2,
+        text = "2nd",
+        mode = 'lines',
+        name = '2nd',
+        line=dict(color='rgb(25, 211, 243)', width=4, dash='solid')
     )
 )
 
 fig.add_trace(
-    go.Scatter(x = gen_number,
-               y = plot_ranking_4,
-              text = "4th",
-              mode = 'lines',
-              line=dict(color='firebrick', width=4, dash='solid'),
-              name = '4th'
+    go.Scatter(
+        x = gen_number,
+        y = plot_ranking_3,
+        text = "3rd",
+        mode = 'lines',
+        line=dict(color='rgb(188, 189, 34)', width=4, dash='solid'),
+        name = '3rd'
+    )
+)
+
+fig.add_trace(
+    go.Scatter(
+        x = gen_number,
+        y = plot_ranking_4,
+        text = "4th",
+        mode = 'lines',
+        line=dict(color='firebrick', width=4, dash='solid'),
+        name = '4th'
     )
 )
 
@@ -238,11 +230,9 @@ fig.update_layout(
 #Loacal 確認用
 # fig.show()
 
-
-
-
-
 #Rendering
+app.title = "genetic algorithm sample"
+app._favicon = "pokemon-GA.ico"
 app.layout = html.Div(children=[
     html.H1(children='genetic algorithm sample'),
 
@@ -253,4 +243,4 @@ app.layout = html.Div(children=[
 ])
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
