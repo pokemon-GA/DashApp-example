@@ -227,10 +227,10 @@ fig.update_layout(
 # fig.show()
 
 #Rendering
-app.title = "genetic algorithm sample"
+app.title = "ES-Engine"
 app._favicon = "pokemon-GA.ico"
 app.layout = html.Div(children=[
-    html.H1(children='genetic algorithm sample'),
+    html.H1(children='ES-Engine'),
 
     dcc.Graph(
         id='example-graph',
